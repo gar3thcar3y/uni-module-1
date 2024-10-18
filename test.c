@@ -11,6 +11,14 @@ float rtotal(float r1, float r2, float r3){
     return 1/(1/r1 + 1/r2 + 1/r3);
 }
 
+void printarr(int* arr, int size){
+    printf("\n{");
+    for(int i=0; i<size; i++){
+        printf("%d",arr[i]); printf(",");
+    }
+    printf("}\n");
+}
+
 int main() {
     float num = 0.111;
     int arr[] = {1, 2, 3, 4, 5};
@@ -27,6 +35,8 @@ int main() {
         printf("%d",arr[i]); printf(",");
     }
     printf("}\n");
+
+    printarr(arr, sizeof(arr)/sizeof(arr[0]));
 
 
     char txt[] = "We are the so-called \"Vikings\" from the north.";
@@ -60,6 +70,7 @@ int main() {
     int* pointer = &anum;
     printf("\na number: "); printf("%d", anum);
     printf("   \nthe pointer: "); printf("%p", pointer);
+    printf("\nvalue from pointer: "); printf("%d", *pointer);
 
     return 0;
 }

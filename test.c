@@ -54,5 +54,12 @@ int main() {
 
     sleep(5);
 
+    //pointers test
+
+    int anum = 10;
+    int* pointer = &anum;
+    printf("\na number: "); printf("%d", anum);
+    printf("   \nthe pointer: "); printf("%p", pointer);
+
     return 0;
 }

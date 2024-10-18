@@ -11,13 +11,11 @@ int main() {
     printf("\n%lu", sizeof(arr[0]));
     printf("\n%lu", sizeof(num));
 
-    return 0;
-}
-
-void printarray(&arr){
     printf("\n{");
     for(int i=0; i<sizeof(arr)/sizeof(arr[0]); i++){
         printf("%d",arr[i]); printf(",");
     }
     printf("}");
+
+    return 0;
 }

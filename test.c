@@ -2,6 +2,7 @@
 #include <string.h>
 #include <limits.h> // For INT_MAX
 #include <unistd.h>
+#include <stdbool.h>
 
 float rtotal(float r1, float r2, float r3){
     if (r1 == 0 || r2 == 0 || r3 == 0) {
@@ -17,6 +18,10 @@ void printarr(int* arr, int size){
         printf("%d",arr[i]); printf(",");
     }
     printf("}\n");
+}
+
+void edit(char* ch){
+    *ch = 'h';
 }
 
 int main() {
@@ -71,6 +76,19 @@ int main() {
     printf("\na number: "); printf("%d", anum);
     printf("   \nthe pointer: "); printf("%p", pointer);
     printf("\nvalue from pointer: "); printf("%d", *pointer);
+    char achar = 'a';
+    printf("\n%c", achar);
+    edit(&achar);
+    printf("\n%c", achar);
+
+    bool mathstuff = false;
+    printf("\n %d", mathstuff);
+
+    int num3 = 7;
+    int* pointer1 = &num3;
+    int** pointer2 = &pointer1;
+    **pointer2 = 11;
+    printf("\n%d", **pointer2);
 
     return 0;
 }

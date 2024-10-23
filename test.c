@@ -4,6 +4,54 @@
 #include <unistd.h>
 #include <stdbool.h>
 
+
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct {
+    int *data;
+    size_t size;
+    size_t capacity;
+} Vector;
+
+// Initialize the vector
+void vector_init(Vector *vector) {
+    vector->size = 0;
+    vector->capacity = 4;  // Starting with an initial capacity
+    vector->data = (int *)malloc(vector->capacity * sizeof(int));
+}
+
+// Resize the vector if needed
+void vector_resize(Vector *vector) {
+    vector->capacity *= 2;
+    vector->data = (int *)realloc(vector->data, vector->capacity * sizeof(int));
+}
+
+// Add an element to the vector
+void vector_add(Vector *vector, int value) {
+    if (vector->size >= vector->capacity) {
+        vector_resize(vector);
+    }
+    vector->data[vector->size++] = value;
+}
+
+// Get an element at a specific index
+int vector_get(Vector *vector, size_t index) {
+    if (index >= vector->size) {
+        printf("Index out of bounds!\n");
+        exit(1);
+    }
+    return vector->data[index];
+}
+
+// Free the allocated memory
+void vector_free(Vector *vector) {
+    free(vector->data);
+}
+
+
+
+
 float rtotal(float r1, float r2, float r3){
     if (r1 == 0 || r2 == 0 || r3 == 0) {
         printf("Error: Resistance values must be greater than zero.\n");
@@ -89,6 +137,13 @@ int main() {
     int** pointer2 = &pointer1;
     **pointer2 = 11;
     printf("\n%d", **pointer2);
+
+    Vector alist;
+    vector_init(&alist);
+    vector_add(&alist, 10);
+    printf("\n%d", vector_get(&alist, 0));
+    vector_add(&alist, 100);
+    printf("\n index 1: %d", vector_get(&alist, 1));
 
     return 0;
 }

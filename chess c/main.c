@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdbool.h>
 
 struct BOARD {
     char* spaces[8][8];  // Each element is a pointer to a string
@@ -24,6 +25,31 @@ void BOARD_init(struct BOARD* board) {
         }
     }
 }
+
+//
+struct PIECE {
+    char name[];
+    char image[][];
+    int* spaces;
+    int amount_spaces;
+}
+
+void PIECE_init(struct PIECE* piece, char name[], char image[][], int spaces[][], int amount_spaces){
+
+}
+//
+
+const int PAWN_SPACES[][] = {{0, 1}, {0, 2}};
+const int KNIGHT_SPACES[][] = {{1, 2}, {-1, 2}, {2, 1}, {-2, 1}, {2, -1}, {-2, -1}, {1, -2}, {-1, -2}};
+const int BISHOP_SPACES[][]= {{1, 1}, {2, 2}, {3, 3}, {4, 4}, {5, 5}, {6, 6}, {7, 7},
+                           {-1, 1}, {-2, 2}, {-3, 3}, {-4, 4}, {-5, 5}, {-6, 6}, {-7, 7},
+                           {1, -1}, {2, -2}, {3, -3}, {4, -4}, {5, -5}, {6, -6}, {7, -7},
+                           {-1, -1}, {-2, -2}, {-3, -3}, {-4, -4}, {-5, -5}, {-6, -6}, {-7, -7}};
+const int CASTLE_SPACES[][] = {{0, 1}, {0, 2}, {0, 3}, {0, 4}, {0, 5}, {0, 6}, {0, 7},
+                           {1, 0}, {2, 0}, {3, 0}, {4, 0}, {5, 0}, {6, 0}, {7, 0},
+                           {0, -1}, {0, -2}, {0, -3}, {0, -4}, {0, -5}, {0, -6}, {0, -7},
+                           {1, 0}, {2, 0}, {3, 0}, {4, 0}, {5, 0}, {6, 0}, {7, 0}};
+
 
 
 const char knight_W[6][8] = {"   _/)  ",
@@ -103,8 +129,8 @@ const char pawn_B[6][8] = {"        ",
 
 
 void BOARD_move(struct BOARD* board, int sx, int sy, int ex, int ey){
-    board->spaces[ex][ey] = board->spaces[sx][sy];
-    board->spaces[sx][sy] = "   ";
+    board->spaces[ey][ex] = board->spaces[sy][sx];
+    board->spaces[sy][sx] = "   ";
 }
 
 void BOARD_display(struct BOARD* board) {
@@ -166,12 +192,12 @@ int main() {
         printf("\nselect piece");
         printf("\nx coordinate: ");
         scanf("%d", &x_move_F);
-        printf("\ny coordinate: ");
+        printf("y coordinate: ");
         scanf("%d", &y_move_F);
-        printf("\nselect piece");
+        printf("select piece");
         printf("\nx coordinate: ");
         scanf("%d", &x_move_T);
-        printf("\ny coordinate: ");;
+        printf("y coordinate: ");;
         scanf("%d", &y_move_T);
         BOARD_move(&board, x_move_F, y_move_F, x_move_T, y_move_T);
         BOARD_display(&board);

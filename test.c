@@ -3,6 +3,7 @@
 #include <limits.h> // For INT_MAX
 #include <unistd.h>
 #include <stdbool.h>
+#include <string.h>
 
 
 #include <stdio.h>
@@ -144,6 +145,9 @@ int main() {
     printf("\n%d", vector_get(&alist, 0));
     vector_add(&alist, 100);
     printf("\n index 1: %d", vector_get(&alist, 1));
-
+    char str1 = "hello";
+    char str2 = "world";
+    strcat(str1, str2);
+    printf("\n", str1);
     return 0;
 }
